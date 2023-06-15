@@ -1,4 +1,5 @@
 # Node-basic
+<h2>How Web Works!</h2>
 
 ![image](https://github.com/waaw-meem/Node-basic/assets/39905929/436819b5-42d9-4b3d-818d-afe3d09011f0)
 
@@ -15,91 +16,54 @@
 <h1>Create Server in Node.js</h1>
 
 <p>
-  Your can create server by using createServer() method It contain callback functionconst server = http.createServer((req,res) => {
-    // console.log(req.url, req.method, req.headers)
-    const url = req.url;
-    const method = req.method;
+<code>const server = http.createServer()</code>
+  Now create server contain different parameters like callback functions to get requests and give response on some coding.
 
-    if(url === '/'){
-        res.write('<html>')
-        res.write('<head><title>Node Server</title></head>')
-        res.write('<body><form action="/message" method="POST"><input type="text" name="message"/><button type="submit">Send</button></form></body>')
-        res.write('</html>')
-        return res.end()
-    }
+Now there are different methods use in different purpose like
 
-    if(url === "/message" && method === 'POST'){
+  <ul>
+<li>
+  res.write('<html>') <span>It will use to write response It works in chunks</span>
+</li>
+  <li>
+    res.setHeader('Content-Type', 'text/html') <span>Format of header respone</span> 
+  </li>
+  <li> 
+   res.end() <span>This is statements are end of response we can't add write method after this method or statement</span> 
+  </li>
+  <li>
+     fs.writeFileSync('message.txt',message) <span>It will use to write small line of response but not for long files
+We can write fs.writeFile()</span> 
+  </li>
 
-       const body = [];
-       // Stream and Buffer 
-       req.on('data', (chunk) =>{
-        body.push(chunk)
-        console.log(chunk)
-       })
+</ul>
+  
 
-       req.on('end', () =>{
-       const parsedBody = Buffer.concat(body).toString()
-       const message = parsedBody.split('=')[1]
-       console.log(parsedBody)
-       fs.writeFileSync('message.txt',message)
-       })
-       
-       fs.writeFileSync('message.txt','DUMMY')
-       res.statusCode = 302;
-       res.setHeader('Location','/')
-       return res.end()
-    }
+  <h3>Now server listen Method will help to run server on localhost</h3>
+// Now listen method will execute your app.js or server
+server.listen(3001)
 
-    // Server Response
-    res.setHeader('Content-Type', 'text/html')
-    res.write('<html>')
-    res.write('<head><title>Node Server</title></head>')
-    res.write('<body><h1>Welcome to Node.js World!</h1></body>')
-    res.write('</html>')
-    res.end()
-})
-  const server = http.createServer((req,res) => {
-    // console.log(req.url, req.method, req.headers)
-    const url = req.url;
-    const method = req.method;
 
-    if(url === '/'){
-        res.write('<html>')
-        res.write('<head><title>Node Server</title></head>')
-        res.write('<body><form action="/message" method="POST"><input type="text" name="message"/><button type="submit">Send</button></form></body>')
-        res.write('</html>')
-        return res.end()
-    }
+  </p>
 
-    if(url === "/message" && method === 'POST'){
 
-       const body = [];
-       // Stream and Buffer 
-       req.on('data', (chunk) =>{
-        body.push(chunk)
-        console.log(chunk)
-       })
-
-       req.on('end', () =>{
-       const parsedBody = Buffer.concat(body).toString()
-       const message = parsedBody.split('=')[1]
-       console.log(parsedBody)
-       fs.writeFileSync('message.txt',message)
-       })
-       
-       fs.writeFileSync('message.txt','DUMMY')
-       res.statusCode = 302;
-       res.setHeader('Location','/')
-       return res.end()
-    }
-
-    // Server Response
-    res.setHeader('Content-Type', 'text/html')
-    res.write('<html>')
-    res.write('<head><title>Node Server</title></head>')
-    res.write('<body><h1>Welcome to Node.js World!</h1></body>')
-    res.write('</html>')
-    res.end()
-})
+<h1>Stream and Buffer in Node.js</h1>
+<p>
+A string is a sequence of characters, but a buffer is a sequence of bytes. Even though a buffer might contain the encoded content of a string value, it may also encode other kinds of values or any binary data.
 </p>
 
+<h1>Exporting File</h1>
+<p>When exporting any file write this command at the end of file
+<code>
+  module.export = functionName
+</code>
+There are different method to write for exporting 
+  <code>
+module.exports = { replaceStr }
+// or
+exports.replaceStr = replaceStr
+
+exports.value1 = value1
+exports.function1 = function1
+</code>
+</p>
